@@ -27,6 +27,10 @@
 // https://newhavendisplay.com/blog/i2c-communication-interface/
 // http://kmpu.ru/other/bus_i2c/index.html
 
+// https://stackoverflow.com/questions/63430327/how-can-i-emulate-an-i2c-device-on-linux
+// https://eraretuya.github.io/2016/12/10/the-i2c-stub-in-action/
+// https://hackaday.io/project/178271-i2c-master-mode-emulator
+
 // gcc -Wall -std=gnu11 -ggdb i2c_example.c
 // sudo ./a.out
 
