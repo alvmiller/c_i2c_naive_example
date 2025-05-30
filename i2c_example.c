@@ -41,6 +41,40 @@
 // sudo ./a.out
 /*****************************************************************************************/
 
+/*****************************************************************************************/
+// sudo modprobe i2c-dev
+// sudo modprobe i2c-stub chip_addr=0x1C
+// sudo dmesg | tail
+// i2c-stub: Virtual chip at 0x1c
+// i2cdetect -l
+// i2c-1	unknown   	SMBus stub driver               	N/A
+// sudo i2cset 1 0x1C 0x07 0x04 b
+// I will write to device file /dev/i2c-1, chip address 0x1c, data address 0x07, data 0x04, mode byte.
+// sudo i2cset 1 0x1C 0x22 0x64 w
+// I will write to device file /dev/i2c-1, chip address 0x1c, data address 0x22, data 0x64, mode word.
+// ls /sys/class/i2c-adapter/i2c-1/
+// delete_device  i2c-dev/       name           new_device     power/         subsystem/     uevent 
+// sudo su
+// echo al3320a 0x1c > /sys/class/i2c-adapter/i2c-1/new_device
+// 1-001c  delete_device  i2c-dev  name  new_device  power  subsystem  uevent
+// dmesg | tail
+// i2c i2c-1: new_device: Instantiated device al3320a at 0x1c
+// ls /sys/bus/iio/devices/iio:device0/
+// in_illuminance_raw  in_illuminance_scale  in_illuminance_scale_available  name  power  subsystem  uevent
+// cat /sys/bus/iio/devices/iio:device0/name
+// al3320a
+// cat /sys/bus/iio/devices/iio:device0/in_illuminance_scale_available
+// 0.512 0.128 0.032 0.01
+// cat /sys/bus/iio/devices/iio:device0/in_illuminance_scale
+// 0.032000
+// echo 0.512 > /sys/bus/iio/devices/iio:device0/in_illuminance_scale
+// cat /sys/bus/iio/devices/iio:device0/in_illuminance_scale
+// 0.512000
+// cat /sys/bus/iio/devices/iio:device0/in_illuminance_raw
+// 100
+// modprobe -r i2c-stub
+/*****************************************************************************************/
+
 // ls /sys/bus/i2c/drivers/<TBD>
 // echo <TBD>-<TBD> > /sys/bus/i2c/drivers/<TBD>/unbind
 // (i2c-0)
